@@ -1,0 +1,34 @@
+html {
+  scroll-behavior: smooth;
+}
+
+main {
+  flex-grow: 1;
+}
+
+body {
+  background-color: var(--body-bg-color);
+  color: var(--body-text-color);
+  min-width: 320px;
+  min-height: 100dvh;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.visually_hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
