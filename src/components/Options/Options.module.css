@@ -1,4 +1,40 @@
-.options_section {
-  padding-top: 30px;
-  padding-bottom: 30px;
+@media only screen and (min-width: 768px) {
+  .options_section {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .options_list_btn {
+    display: flex;
+    gap: 20px;
+  }
+
+  .options_list_btn li button {
+    margin: 5px;
+    font-size: var(--font-size-medium);
+    border: 1.5px solid #000000;
+    border-radius: 5px;
+    padding: 3px 6px;
+    background-color: #e6e6e6;
+  }
+
+  .options_list_btn li button:hover {
+    background-color: #bebebe;
+    transform: scale(1.04);
+    transition: all 0.3s ease;
+    outline: none;
+  }
+
+  .visually_hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+  }
 }

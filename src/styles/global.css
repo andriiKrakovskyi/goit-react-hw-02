@@ -19,6 +19,9 @@ img {
   height: auto;
   flex-shrink: 0;
 }
+button {
+  cursor: pointer;
+}
 
 .visually_hidden {
   position: absolute;
