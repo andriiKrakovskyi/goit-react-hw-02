@@ -5,39 +5,47 @@ import Options from './components/Options/Options';
 import Feedback from './components/Feedback/Feedback';
 
 function App() {
-  const [clicks, setClicks] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
+  const [clicks, setClicks] = useState(() => {
+    const savedClicks = JSON.parse(localStorage.getItem('saved-clicks'));
+    return savedClicks &&
+      typeof savedClicks === 'object' &&
+      !Array.isArray(savedClicks)
+      ? savedClicks
+      : {
+          good: 0,
+          neutral: 0,
+          bad: 0,
+        };
   });
 
-  useEffect(() => {
-    const savedClicks = window.localStorage.getItem('saved-clicks');
-    if (savedClicks !== null) {
-      setClicks(JSON.parse(savedClicks));
-    }
-  }, []);
+  const updateFeedback = (feedbackType) => {
+    setClicks((prev) => ({
+      ...prev,
+      [feedbackType]: prev[feedbackType] + 1,
+    }));
+  };
+
+  const totalFeedback = Object.values(clicks).reduce(
+    (sum, value) => sum + value,
+    0,
+  );
+
+  const showResetButton = totalFeedback > 0;
+
+  const resetFeedback = () => {
+    setClicks(
+      Object.keys(clicks).reduce((acc, key) => ({ ...acc, [key]: 0 }), {}),
+    );
+  };
+
+  const positiveFeedback =
+    totalFeedback > 0 ? Math.round((clicks.good / totalFeedback) * 100) : 0;
+
+  const btnOptions = Object.keys(clicks);
 
   useEffect(() => {
     window.localStorage.setItem('saved-clicks', JSON.stringify(clicks));
   }, [clicks]);
-
-  const updateFeedback = (feedbackType) => {
-    setClicks((prevClicks) => ({
-      ...prevClicks,
-      [feedbackType]: prevClicks[feedbackType] + 1,
-    }));
-  };
-
-  const resetFeedback = () => {
-    setClicks({ good: 0, neutral: 0, bad: 0 });
-  };
-
-  const totalFeedback = clicks.good + clicks.neutral + clicks.bad;
-
-  const showResetButton = totalFeedback > 0;
-
-  const positiveFeedback = Math.round((clicks.good / totalFeedback) * 100);
 
   return (
     <>
@@ -47,12 +55,14 @@ function App() {
         updateFeedback={updateFeedback}
         resetFeedback={resetFeedback}
         showResetButton={showResetButton}
+        btnOptions={btnOptions}
       />
       {totalFeedback > 0 ? (
         <Feedback
           clicks={clicks}
           totalFeedback={totalFeedback}
           positiveFeedback={positiveFeedback}
+          btnOptions={btnOptions}
         />
       ) : (
         <Notification message="No feedback yet" />
@@ -62,29 +72,3 @@ function App() {
 }
 
 export default App;
-
-// useEffect(() => {
-//   try {
-//     const savedClicks = window.localStorage.getItem('saved-clicks');
-//     if (savedClicks) {
-//       const parsedClicks = JSON.parse(savedClicks);
-//       if (
-//         typeof parsedClicks.good === 'number' &&
-//         typeof parsedClicks.neutral === 'number' &&
-//         typeof parsedClicks.bad === 'number'
-//       ) {
-//         setClicks(parsedClicks);
-//       }
-//     }
-//   } catch (error) {
-//     console.error('Error loading clicks from localStorage:', error);
-//   }
-// }, []);
-
-// useEffect(() => {
-//   try {
-//     window.localStorage.setItem('saved-clicks', JSON.stringify(clicks));
-//   } catch (error) {
-//     console.error('Error saving clicks to localStorage:', error);
-//   }
-// }, [clicks]);

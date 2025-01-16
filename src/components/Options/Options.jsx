@@ -5,39 +5,25 @@ export default function Options({
   updateFeedback,
   resetFeedback,
   showResetButton,
+  btnOptions,
 }) {
   return (
     <section className={s.options_section}>
       <Container className={s.options_container}>
         <ul className={s.options_list_btn}>
-          <li>
-            <button
-              className={s.options_btn_good}
-              onClick={() => updateFeedback('good')}
-            >
-              Good
-            </button>
-          </li>
-          <li>
-            <button
-              className={s.options_btn_neutral}
-              onClick={() => updateFeedback('neutral')}
-            >
-              Neutral
-            </button>
-          </li>
-          <li>
-            <button
-              className={s.options_btn_bad}
-              onClick={() => updateFeedback('bad')}
-            >
-              Bad
-            </button>
-          </li>
+          {btnOptions.map((feedbackType) => (
+            <li key={feedbackType}>
+              <button onClick={() => updateFeedback(feedbackType)}>
+                {feedbackType}
+              </button>
+            </li>
+          ))}
 
           {showResetButton && (
             <li>
-              <button onClick={resetFeedback}>Reset</button>
+              <button className={s.options_btn_reset} onClick={resetFeedback}>
+                Reset
+              </button>
             </li>
           )}
         </ul>

@@ -25,16 +25,12 @@
     outline: none;
   }
 
-  .visually_hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    border: 0;
-    padding: 0;
-    white-space: nowrap;
-    clip-path: inset(100%);
-    clip: rect(0 0 0 0);
-    overflow: hidden;
+  .options_list_btn li .options_btn_reset {
+    background-color: #b1b0b0;
+    font-size: 17px;
+  }
+
+  .options_list_btn li .options_btn_reset:hover {
+    background-color: #a88474;
   }
 }
