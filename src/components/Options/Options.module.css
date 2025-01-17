@@ -9,21 +9,46 @@
     gap: 20px;
   }
 
+  /* ===================== */
+
   .options_list_btn li button {
     margin: 5px;
-    font-size: var(--font-size-medium);
     border: 1.5px solid #000000;
     border-radius: 5px;
     padding: 3px 6px;
-    background-color: #e6e6e6;
   }
 
   .options_list_btn li button:hover {
-    background-color: #bebebe;
     transform: scale(1.04);
     transition: all 0.3s ease;
     outline: none;
   }
+  /*? ============================== */
+
+  .options_btn {
+    background-color: #e6e6e6;
+    font-size: var(--font-size-medium);
+  }
+
+  .options_btn:hover {
+    background-color: #bebebe;
+  }
+
+  /* -----*/
+
+  .options_btn_good {
+    color: green;
+  }
+
+  .options_btn_bad {
+    color: red;
+  }
+
+  .options_btn_neutral {
+    color: blue;
+  }
+
+  /*? =============================== */
 
   .options_list_btn li .options_btn_reset {
     background-color: #b1b0b0;

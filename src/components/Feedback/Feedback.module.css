@@ -11,4 +11,16 @@
   .feedback_list li p {
     font-size: 18px;
   }
+
+  .feedback_good {
+    color: green;
+  }
+
+  .feedback_bad {
+    color: red;
+  }
+
+  .feedback_neutral {
+    color: blue;
+  }
 }

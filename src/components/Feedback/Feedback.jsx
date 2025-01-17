@@ -11,9 +11,21 @@ export default function Feedback({
     <section className={s.feedback_section}>
       <Container className={s.feedback_container}>
         <ul className={s.feedback_list}>
-          {btnOptions.map((feedbackType) => (
+          {/* {btnOptions.map((feedbackType) => (
             <li key={feedbackType}>
               <p>
+                {feedbackType}: {clicks[feedbackType]}
+              </p>
+            </li>
+          ))} */}
+
+          {btnOptions.map((feedbackType) => (
+            <li key={feedbackType}>
+              <p
+                className={`${s.options_btn} ${
+                  s[`feedback_${feedbackType.toLowerCase()}`]
+                }`}
+              >
                 {feedbackType}: {clicks[feedbackType]}
               </p>
             </li>

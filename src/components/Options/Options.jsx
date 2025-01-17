@@ -11,13 +11,37 @@ export default function Options({
     <section className={s.options_section}>
       <Container className={s.options_container}>
         <ul className={s.options_list_btn}>
-          {btnOptions.map((feedbackType) => (
+          {/* {btnOptions.map((feedbackType) => (
             <li key={feedbackType}>
-              <button onClick={() => updateFeedback(feedbackType)}>
+              <button
+                className={`${s.options_btn} ${
+                  s[`options_btn_${feedbackType.toLowerCase()}`]
+                }`}
+                onClick={() => updateFeedback(feedbackType)}
+              >
                 {feedbackType}
               </button>
             </li>
-          ))}
+          ))} */}
+
+          {btnOptions.map((feedbackType) => {
+            const randomColor = `#${Math.floor(
+              Math.random() * 16777215,
+            ).toString(16)}`;
+            return (
+              <li key={feedbackType}>
+                <button
+                  className={`${s.options_btn} ${
+                    s[`options_btn_${feedbackType.toLowerCase()}`]
+                  }`}
+                  style={{ backgroundColor: randomColor }}
+                  onClick={() => updateFeedback(feedbackType)}
+                >
+                  {feedbackType}
+                </button>
+              </li>
+            );
+          })}
 
           {showResetButton && (
             <li>
